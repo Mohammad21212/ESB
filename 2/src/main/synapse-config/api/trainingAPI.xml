@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/api/training" name="trainingAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/v1.0">
+        <inSequence>
+            <!-- Capture 'number' from query parameter -->
+            <property name="number" expression="get-property('query.param.number')"/>
+            <!-- Capture 'id' (UUID) from query parameter -->
+            <property name="id" expression="get-property('query.param.id')"/>
+            <!-- Capture and evaluate the JSON payload -->
+            <property name="payload" expression="json-eval($.)"/>
+
+            <!-- JavaScript logic for matching and error handling -->
+            <script language="js">
+                <![CDATA[
+                    var number = mc.getProperty('number');
+                    var id = mc.getProperty('id');
+                    var payloadStr = mc.getProperty('payload');
+
+                    // Initialize found to false
+                    var found = false;
+
+                    // Check if query parameters are missing
+                    if (!number || !id) {
+                        mc.setProperty('errorType', 'missingParams');
+                        mc.setProperty('found', false);
+                    }
+                    // Check if the payload is empty or null
+                    else if (payloadStr === null || payloadStr.trim() == "") {
+                        mc.setProperty('errorType', 'emptyPayload');
+                        mc.setProperty('found', false);
+                    }
+                    // Process the JSON payload
+                    else {
+                        try {
+                            var payload = JSON.parse(payloadStr);  // Parse the payload
+
+                            // Iterate through the payload to find the matching object
+                            for (var i = 0; i < payload.length; i++) {
+                                // Match BodyId with id and BodyIdNumber with number (both as strings)
+                                if (payload[i].BodyId == id && payload[i].BodyIdNumber == number) {
+                                    // Set the found object's name in the response
+                                    mc.setPayloadJSON({ "name": payload[i].name });
+                                    found = true;
+                                    break;
+                                }
+                            }
+
+                            // Set the found property in the message context
+                            mc.setProperty('found', found);
+
+                            // If no match was found, set 'notFound' error
+                            if (!found) {
+                                mc.setProperty('errorType', 'notFound');
+                            }
+
+                        } catch (e) {
+                            // Handle JSON parsing error
+                            mc.setProperty('errorType', 'invalidJSON');
+                            mc.setProperty('found', false);
+                        }
+                    }
+                ]]>
+            </script>
+
+            <!-- Filter to determine if a match was found or an error occurred -->
+            <filter source="$ctx:found" regex="true">
+                <then>
+                    <!-- Success case -->
+                    <property name="HTTP_SC" value="200" scope="axis2"/> <!-- Set status code 200 for success -->
+                </then>
+                <else>
+                    <!-- Error handling based on errorType -->
+                    <filter source="get-property('errorType')" regex="missingParams">
+                        <then>
+                            <property name="HTTP_SC" value="400" scope="axis2"/> <!-- Set status code 400 for bad request -->
+                            <payloadFactory media-type="json">
+                                <format> { "message": "Missing required query parameters: number or id" } </format>
+                                <args/>
+                            </payloadFactory>
+                        </then>
+                    </filter>
+
+                    <filter source="get-property('errorType')" regex="emptyPayload">
+                        <then>
+                            <property name="HTTP_SC" value="404" scope="axis2"/> <!-- Set status code 404 for empty payload -->
+                            <payloadFactory media-type="json">
+                                <format> { "message": "Payload is empty" } </format>
+                                <args/>
+                            </payloadFactory>
+                        </then>
+                    </filter>
+
+                    <filter source="get-property('errorType')" regex="invalidJSON">
+                        <then>
+                            <property name="HTTP_SC" value="404" scope="axis2"/> <!-- Set status code 404 for invalid JSON -->
+                            <payloadFactory media-type="json">
+                                <format> { "message": "Invalid JSON format" } </format>
+                                <args/>
+                            </payloadFactory>
+                        </then>
+                    </filter>
+
+                    <!-- If none of the above errors, return not found -->
+                    <filter source="get-property('errorType')" regex="notFound">
+                        <then>
+                            <property name="HTTP_SC" value="404" scope="axis2"/> <!-- Set status code 404 for not found -->
+                            <payloadFactory media-type="json">
+                                <format> { "message": "not found" } </format>
+                                <args/>
+                            </payloadFactory>
+                        </then>
+                    </filter>
+                </else>
+            </filter>
+
+            <!-- Send the response -->
+            <respond/>
+
+        </inSequence>
+
+        <outSequence>
+            <!-- Optional outflow mediation logic -->
+        </outSequence>
+
+        <faultSequence>
+            <!-- Optional error handling -->
+        </faultSequence>
+    </resource>
+</api>

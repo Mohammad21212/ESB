@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "5d674175-4a17-4481-b6e6-07ade452c408",
+		"name": "Task1",
+		"description": "we send a post request to localhost/api/test/{number}",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32069725",
+		"_collection_link": "https://www.postman.com/material-candidate-10343489/workspace/socket-development/collection/32069725-5d674175-4a17-4481-b6e6-07ade452c408?action=share&source=collection_link&creator=32069725"
+	},
+	"item": [
+		{
+			"name": "Good Request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "id",
+						"value": "100",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n{\r\n    \"BodyId\": \"100\",\r\n    \"BodyIdNumber\": \"200\",\r\n    \"name\": \"mohammad\"\r\n},\r\n{\r\n    \"BodyId\": \"101\",\r\n    \"BodyIdNumber\": \"201\",\r\n    \"name\": \"amir\"\r\n}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8290/api/test/200",
+					"host": [
+						"localhost"
+					],
+					"port": "8290",
+					"path": [
+						"api",
+						"test",
+						"200"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Good Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "id",
+								"value": "100",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\r\n    \"BodyId\": \"100\",\r\n    \"BodyIdNumber\": \"200\",\r\n    \"name\": \"mohammad\"\r\n},\r\n{\r\n    \"BodyId\": \"101\",\r\n    \"BodyIdNumber\": \"201\",\r\n    \"name\": \"amir\"\r\n}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8290/api/test/200",
+							"host": [
+								"localhost"
+							],
+							"port": "8290",
+							"path": [
+								"api",
+								"test",
+								"200"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "activityid",
+							"value": "97801a68-2859-44fd-bb0b-e2b16fc1f308"
+						},
+						{
+							"key": "Accept",
+							"value": "*/*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST"
+						},
+						{
+							"key": "Host",
+							"value": "localhost:8290"
+						},
+						{
+							"key": "Postman-Token",
+							"value": "9d36fb26-0a80-4f01-8826-8cd4e19afc44"
+						},
+						{
+							"key": "Accept-Encoding",
+							"value": "gzip, deflate, br"
+						},
+						{
+							"key": "id",
+							"value": "100"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 03 Oct 2024 18:42:54 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"BodyId\": \"100\",\n    \"BodyIdNumber\": \"200\",\n    \"name\": \"mohammad\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Bad Request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "id",
+						"value": "100",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n{\r\n    \"BodyId\": \"100\",\r\n    \"BodyIdNumber\": \"200\",\r\n    \"name\": \"mohammad\"\r\n},\r\n{\r\n    \"BodyId\": \"101\",\r\n    \"BodyIdNumber\": \"201\",\r\n    \"name\": \"amir\"\r\n}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8290/api/test/500",
+					"host": [
+						"localhost"
+					],
+					"port": "8290",
+					"path": [
+						"api",
+						"test",
+						"500"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Bad Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "id",
+								"value": "100",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\r\n    \"BodyId\": \"100\",\r\n    \"BodyIdNumber\": \"200\",\r\n    \"name\": \"mohammad\"\r\n},\r\n{\r\n    \"BodyId\": \"101\",\r\n    \"BodyIdNumber\": \"201\",\r\n    \"name\": \"amir\"\r\n}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8290/api/test/500",
+							"host": [
+								"localhost"
+							],
+							"port": "8290",
+							"path": [
+								"api",
+								"test",
+								"500"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "activityid",
+							"value": "51dd0f5b-fceb-424b-9db6-e5c729ca7021"
+						},
+						{
+							"key": "Accept",
+							"value": "*/*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST"
+						},
+						{
+							"key": "Host",
+							"value": "localhost:8290"
+						},
+						{
+							"key": "Postman-Token",
+							"value": "96938483-456a-4ab9-8cd8-0ef831ba1300"
+						},
+						{
+							"key": "Accept-Encoding",
+							"value": "gzip, deflate, br"
+						},
+						{
+							"key": "id",
+							"value": "100"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 03 Oct 2024 18:43:34 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"not found\"\n}"
+				}
+			]
+		}
+	]
+}

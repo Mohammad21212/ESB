@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "e9fc92ed-f236-4965-8bf7-70887844e121",
+		"name": "Task2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32069725",
+		"_collection_link": "https://www.postman.com/material-candidate-10343489/workspace/socket-development/collection/32069725-e9fc92ed-f236-4965-8bf7-70887844e121?action=share&source=collection_link&creator=32069725"
+	},
+	"item": [
+		{
+			"name": "Good Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n        {\r\n            \"BodyId\": \"100\",\r\n            \"BodyIdNumber\": \"200\",\r\n            \"name\": \"mohammad\"\r\n        },\r\n        {\r\n            \"BodyId\": \"101\",\r\n            \"BodyIdNumber\": \"201\",\r\n            \"name\": \"amir\"\r\n        }\r\n    ]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8290/api/training/v1.0?number=200&id=100",
+					"host": [
+						"localhost"
+					],
+					"port": "8290",
+					"path": [
+						"api",
+						"training",
+						"v1.0"
+					],
+					"query": [
+						{
+							"key": "number",
+							"value": "200"
+						},
+						{
+							"key": "id",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Good Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n        {\r\n            \"BodyId\": \"100\",\r\n            \"BodyIdNumber\": \"200\",\r\n            \"name\": \"mohammad\"\r\n        },\r\n        {\r\n            \"BodyId\": \"101\",\r\n            \"BodyIdNumber\": \"201\",\r\n            \"name\": \"amir\"\r\n        }\r\n    ]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8290/api/training/v1.0?number=200&id=100",
+							"host": [
+								"localhost"
+							],
+							"port": "8290",
+							"path": [
+								"api",
+								"training",
+								"v1.0"
+							],
+							"query": [
+								{
+									"key": "number",
+									"value": "200"
+								},
+								{
+									"key": "id",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "activityid",
+							"value": "a392436b-aec1-45e4-8576-e75eb1f2b811"
+						},
+						{
+							"key": "Accept",
+							"value": "*/*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST"
+						},
+						{
+							"key": "Host",
+							"value": "localhost:8290"
+						},
+						{
+							"key": "Postman-Token",
+							"value": "39a563bb-3749-4bf9-adcb-cbcb50a7e338"
+						},
+						{
+							"key": "Accept-Encoding",
+							"value": "gzip, deflate, br"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 04 Oct 2024 21:47:15 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"mohammad\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Bad Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n        {\r\n            \"BodyId\": \"100\",\r\n            \"BodyIdNumber\": \"200\",\r\n            \"name\": \"mohammad\"\r\n        },\r\n        {\r\n            \"BodyId\": \"101\",\r\n            \"BodyIdNumber\": \"201\",\r\n            \"name\": \"amir\"\r\n        }\r\n    ]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8290/api/training/v1.0?number=200&id=103",
+					"host": [
+						"localhost"
+					],
+					"port": "8290",
+					"path": [
+						"api",
+						"training",
+						"v1.0"
+					],
+					"query": [
+						{
+							"key": "number",
+							"value": "200"
+						},
+						{
+							"key": "id",
+							"value": "103"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Bad Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n        {\r\n            \"BodyId\": \"100\",\r\n            \"BodyIdNumber\": \"200\",\r\n            \"name\": \"mohammad\"\r\n        },\r\n        {\r\n            \"BodyId\": \"101\",\r\n            \"BodyIdNumber\": \"201\",\r\n            \"name\": \"amir\"\r\n        }\r\n    ]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8290/api/training/v1.0?number=200&id=103",
+							"host": [
+								"localhost"
+							],
+							"port": "8290",
+							"path": [
+								"api",
+								"training",
+								"v1.0"
+							],
+							"query": [
+								{
+									"key": "number",
+									"value": "200"
+								},
+								{
+									"key": "id",
+									"value": "103"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "activityid",
+							"value": "3df5b277-c82f-424f-b379-352d56fb2dc7"
+						},
+						{
+							"key": "Accept",
+							"value": "*/*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST"
+						},
+						{
+							"key": "Host",
+							"value": "localhost:8290"
+						},
+						{
+							"key": "Postman-Token",
+							"value": "ac87d28e-3368-486d-972b-2b4f4a17617d"
+						},
+						{
+							"key": "Accept-Encoding",
+							"value": "gzip, deflate, br"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 04 Oct 2024 21:47:52 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"not found\"\n}"
+				}
+			]
+		}
+	]
+}

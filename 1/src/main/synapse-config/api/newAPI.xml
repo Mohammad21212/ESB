@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<api context="/api" name="newAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/test/{number}">
+        <inSequence>
+            <property name="number" expression="$ctx:uri.var.number"/>
+            <property name="headerId" expression="$trp:id"/>
+            <property name="payload" expression="json-eval($.)"/>
+            <script language="js">
+                <![CDATA[
+                    var payloadStr = mc.getProperty('payload');
+
+                    if (payloadStr && payloadStr.trim() !== "") {
+                        try {
+                            var payload = JSON.parse(payloadStr);
+                            var found = false;
+                            var number = mc.getProperty('number');
+                            var headerId = mc.getProperty('headerId');
+                            
+                            for (var i = 0; i < payload.length; i++) {
+                                if (payload[i].BodyId == headerId && payload[i].BodyIdNumber == number) {
+                                    mc.setPayloadJSON(payload[i]);
+                                    found = true;
+                                    mc.setProperty('found', found);
+                                    break;
+                                }
+                            }
+                        } catch (e) {
+                            // Handle JSON parsing error
+                            mc.setProperty('found', false);
+                            mc.setPayloadJSON({ "message": "Invalid JSON format" });
+                        }
+                    } else {
+                        // Handle empty or null payload
+                        mc.setProperty('found', false);
+                        mc.setPayloadJSON({ "message": "Payload is empty" });
+                    }
+
+                ]]>
+            </script>
+
+            <filter source="$ctx:found" regex="true">
+                <then>
+                    <property name="HTTP_SC" value="200" scope="axis2"/> <!-- Set status code 200 for success -->
+                </then>
+                <else>
+                    <property name="HTTP_SC" value="404" scope="axis2"/> <!-- Set status code 404 for not found -->
+                    <payloadFactory media-type="json">
+                        <format> { "message": "not found" } </format>
+                        <args />
+                    </payloadFactory>
+                </else>
+            </filter>
+
+
+            <respond/>
+
+
+        </inSequence>
+        <outSequence>
+            <!-- Define outflow mediation logic here -->
+        </outSequence>
+        <faultSequence>
+            <!-- Define error handling mediation logic here -->
+        </faultSequence>
+    </resource>
+</api>

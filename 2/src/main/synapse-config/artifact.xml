@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artifacts><artifact name="trainingAPI" type="synapse/api" serverRole="EnterpriseServiceBus" groupId="SecondProject" version="1.0-SNAPSHOT"><file>api\trainingAPI.xml</file></artifact></artifacts>
